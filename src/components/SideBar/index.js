@@ -27,7 +27,7 @@ class SideBar extends Component {
           return (
             <SideBarContainer darkMode={isDarkTheme}>
               <OptionsContainer>
-                <Link to="/" className={`link-item ${textClassName}`}>
+                <Link to="/home" className={`link-item ${textClassName}`}>
                   <OptionItem>
                     {isDarkTheme ? (
                       <AiFillHome className="icon" />
