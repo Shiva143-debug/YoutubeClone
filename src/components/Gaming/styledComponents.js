@@ -21,7 +21,6 @@ export const Heading = styled.h1`
 export const VideosContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  min-height: 80vh;
   margin-top: 5px;
   list-style-type: none;
   padding-left: 0px;

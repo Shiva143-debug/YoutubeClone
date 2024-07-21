@@ -8,6 +8,7 @@ export const ListItem = styled.li`
 
 export const VideoImage = styled.img`
   width: 98%;
+  height: 200px;
   @media (max-width: 768px) {
    width:95vw
    }
