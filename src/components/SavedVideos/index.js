@@ -1,7 +1,8 @@
 import {BiListPlus} from 'react-icons/bi'
 import ThemeContext from '../../context/ThemeContext'
 import Header from '../Header'
-import SideBar from '../SideBarr'
+import SideBar from '../SideBar'
+import React, { useState, useEffect } from 'react';
 
 import {
   SavedVideosContainer,
@@ -17,7 +18,25 @@ import {
 } from './styledComponents'
 import VideoItem from '../VideoItem'
 
-const SavedVideos = () => (
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return isMobile;
+};
+
+const SavedVideos = () => {
+
+  const isMobile = useIsMobile();
+
+return(
   <ThemeContext.Consumer>
     {value => {
       const {isDarkTheme, savedVideosList} = value
@@ -47,7 +66,7 @@ const SavedVideos = () => (
             darkMode={isDarkTheme}
             data-testid="savedVideos"
           >
-            <SideBar />
+           {!isMobile ? (<SideBar />):""}
             <SavedVideosContentContainer>
               {savedVideosList.length === 0 ? (
                 <NoSavedVideosContainer>
@@ -71,6 +90,8 @@ const SavedVideos = () => (
       )
     }}
   </ThemeContext.Consumer>
+
 )
+}
 
 export default SavedVideos

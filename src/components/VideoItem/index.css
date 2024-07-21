@@ -1,9 +1,9 @@
-/* .video-link-item {
+.video-link-item {
   margin: 10px;
   width: 30%;
-  height: 100px;
+  height: 450px;
   text-decoration: none;
-} */
+}
 
 .selected {
   color: #2563eb;

@@ -20,6 +20,11 @@
 //     }))
 //   }
 
+//   /*
+//   toggleTabId = id => {
+//     this.setState({activeTabId: id})
+//   }
+//   */
 
 //   saveVideoButtonClicked = data => {
 //     const {savedVideosList} = this.state
@@ -59,61 +64,62 @@
 
 // export default App
 
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import './App.css';
+import useAuthentication from './useAuthentication';
+import ThemeContext from './context/ThemeContext';
+import LoginForm from './components/Login';
+import Home from './components/Home';
+import Gaming from './components/Gaming';
+import Trending from './components/Trending';
+import SavedVideos from './components/SavedVideos';
+import VideoItemDetails from './components/VideoItemDetails';
+import NotFound from './components/NotFound';
 
-import './App.css'
-import { Component } from 'react'
-import { Route, Routes, Navigate } from 'react-router-dom'
-import Login from './components/Login'
-import Home from './components/Home'
-import ProtectedRoute from './components/ProtectedRoute'
-import ThemeContext from './context/ThemeContext'
-import Gaming from './components/Gaming'
-import Trending from './components/Trending'
-import SavedVideos from './components/SavedVideos'
-import VideoItemDetails from './components/VideoItemDetails'
-import NotFound from './components/NotFound'
+const App = () => {
+  const isAuthenticated = useAuthentication();
+  const [isDarkTheme, setIsDarkTheme] = React.useState(false);
+  const [savedVideosList, setSavedVideosList] = React.useState([]);
 
-class App extends Component {
-  state = { isDarkTheme: false, savedVideosList: [] }
+  const toggleTheme = () => {
+    setIsDarkTheme(prevTheme => !prevTheme);
+  };
 
-  toggleTheme = () => {
-    this.setState(prevState => ({
-      isDarkTheme: !prevState.isDarkTheme,
-    }))
-  }
+  const saveVideoButtonClicked = (data) => {
+    setSavedVideosList(prevList => [...prevList, data]);
+  };
 
-  saveVideoButtonClicked = data => {
-    const { savedVideosList } = this.state
-    this.setState({ savedVideosList: [...savedVideosList, data] })
-  }
+  return (
+    <ThemeContext.Provider
+      value={{
+        isDarkTheme,
+        toggleTheme,
+        saveVideoButtonClicked,
+        savedVideosList,
+      }}
+    >
+      <Routes>
+        <Route path="/login" element={<LoginForm />} />
+        
+        {/* <Route path="/" element={<Navigate to={isAuthenticated ? "/home" : "/login"} replace />} /> */}
 
-  render() {
-    const { isDarkTheme, savedVideosList } = this.state
-
-    return (
-      <ThemeContext.Provider
-        value={{
-          isDarkTheme,
-          toggleTheme: this.toggleTheme,
-          saveVideoButtonClicked: this.saveVideoButtonClicked,
-          savedVideosList,
-        }}
-      >
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<Home />} />
+        {isAuthenticated ? (
+          <>
+            <Route path="/home" element={<Home />} />
             <Route path="/trending" element={<Trending />} />
             <Route path="/saved-videos" element={<SavedVideos />} />
             <Route path="/gaming" element={<Gaming />} />
             <Route path="/videos/:id" element={<VideoItemDetails />} />
-          </Route>
-          <Route path="/not-found" element={<NotFound />} />
-          <Route path="*" element={<Navigate to="/not-found" />} />
-        </Routes>
-      </ThemeContext.Provider>
-    )
-  }
-}
+          </>
+        ) : (
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        )}
 
-export default App
+          <Route path="/not-found" element={<NotFound />} />
+      </Routes>
+    </ThemeContext.Provider>
+  );
+};
+
+export default App;

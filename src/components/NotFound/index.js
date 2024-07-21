@@ -8,9 +8,7 @@ import {
 import ThemeContext from '../../context/ThemeContext'
 
 import Header from '../Header'
-import SideBar from '../SideBarr'
-// import SideBar from '../Sidebar'
-// import SideBar from '../SideBar'
+import SideBar from '../SideBar'
 
 const NotFound = () => (
   <ThemeContext.Consumer>

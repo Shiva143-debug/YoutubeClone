@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 
 import {GrClose} from 'react-icons/gr'
 import {BiSearchAlt2} from 'react-icons/bi'
-import Loader from 'react-loader-spinner'
+import {Oval} from 'react-loader-spinner'
 import {
   HomeContainer,
   HomeContentContainer,
@@ -24,12 +24,10 @@ import {
 } from './styledComponents'
 import ThemeContext from '../../context/ThemeContext'
 import Header from '../Header'
-// import SideBar from '../SideBar'
+import SideBar from '../SideBar'
 import VideoItem from '../VideoItem'
 import FailureView from '../FailureView'
 import './index.css'
-import SideBar from '../SideBarr'
-// import SideBar from '../Sidebar'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -44,6 +42,7 @@ class Home extends Component {
     moviesList: [],
     apiStatus: apiStatusConstants.initial,
     bannerVisible: true,
+    isMobile: window.innerWidth <= 768,
   }
 
   componentDidMount() {
@@ -91,8 +90,7 @@ class Home extends Component {
 
   renderLoader = () => (
     <LoaderContainer data-testid="loader">
-      {/* <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" /> */}
-      <p>Loading</p>
+      <Oval type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </LoaderContainer>
   )
 
@@ -166,7 +164,7 @@ class Home extends Component {
             <>
               <Header />
               <HomeContainer darkMode={isDarkTheme} data-testid="home">
-                <SideBar />
+              {!this.state.isMobile && <SideBar />}
                 <HomeContentContainer>
                   <BannerContainer className={bannerClass} data-testid="banner">
                     <CloseButton

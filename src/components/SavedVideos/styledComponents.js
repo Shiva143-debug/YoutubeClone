@@ -4,12 +4,13 @@ export const SavedVideosContainer = styled.div`
   min-height: 100vh;
   background-color: ${props => (props.darkMode ? '#0f0f0f' : '#f9f9f9')};
   display: flex;
+
 `
 
 export const SavedVideosContentContainer = styled.div`
   min-height: 100px;
-  width: 88%;
-  padding: 25px;
+  width: 100%;
+  // padding: 25px;
   margin-top: 50px;
 `
 
@@ -21,6 +22,9 @@ export const VideosContainer = styled.ul`
   list-style-type: none;
   padding-left: 0px;
   width: 100%;
+    @media (max-width: 768px) {
+   flex-direction: column;
+   }
 `
 export const NoSavedVideosContainer = styled.div`
   display: flex;
@@ -34,6 +38,9 @@ export const NoSavedVideos = styled.img`
 `
 export const NoSavesVideosText = styled.h1`
   color: ${props => (!props.darkMode ? '#0f0f0f' : '#f9f9f9')};
+    @media (max-width: 768px) {
+   text-align:center
+   }
 `
 
 export const NoSavedVideosSuggestion = styled.p`
@@ -63,4 +70,7 @@ export const LinkItem = styled.div`
 `
 export const Heading = styled.h1`
   color: ${props => (!props.darkMode ? '#0f0f0f' : '#f9f9f9')};
+  @media (max-width: 768px) {
+  font-size:30px
+  }
 `

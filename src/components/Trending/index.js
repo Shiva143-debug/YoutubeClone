@@ -1,12 +1,12 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import Loader from 'react-loader-spinner'
+import {Oval} from 'react-loader-spinner'
 import {HiOutlineFire, HiFire} from 'react-icons/hi'
 import ThemeContext from '../../context/ThemeContext'
 import VideoItem from '../VideoItem'
 import './index.css'
 import Header from '../Header'
-// import SideBar from '../SideBar'
+import SideBar from '../SideBar'
 import FailureView from '../FailureView'
 import {
   TrendingContainer,
@@ -17,8 +17,6 @@ import {
   IconContainer,
   Heading,
 } from './styledComponents'
-import SideBar from '../SideBarr'
-// import SideBar from '../Sidebar'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -31,6 +29,7 @@ class Trending extends Component {
   state = {
     trendingVideosList: [],
     apiStatus: apiStatusConstants.initial,
+    isMobile: window.innerWidth <= 768,
   }
 
   componentDidMount() {
@@ -73,8 +72,7 @@ class Trending extends Component {
 
   renderLoader = () => (
     <LoaderContainer data-testid="loader">
-      {/* <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" /> */}
-      <p>Loading</p>
+      <Oval type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </LoaderContainer>
   )
 
@@ -143,7 +141,7 @@ class Trending extends Component {
             <>
               <Header />
               <TrendingContainer darkMode={isDarkTheme} data-testid="trending">
-                <SideBar />
+              {!this.state.isMobile && <SideBar />}
                 <TrendingContentContainer>
                   {renderBasedOnApiStatus}
                 </TrendingContentContainer>

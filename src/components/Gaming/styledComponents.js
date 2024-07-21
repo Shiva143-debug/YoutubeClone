@@ -7,21 +7,28 @@ export const GamingContainer = styled.div`
 `
 export const GamingContentContainer = styled.div`
   min-height: 100px;
-  width: 88%;
-  padding: 25px;
+  width: 100vw;
+  // padding: 25px;
+   margin-top: 50px;
 `
 export const Heading = styled.h1`
   color: ${props => (!props.darkMode ? '#0f0f0f' : '#f9f9f9')};
+    @media (max-width: 768px) {
+  font-size:30px
+  }
 `
 
 export const VideosContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
   min-height: 80vh;
-  margin-top: 15px;
+  margin-top: 5px;
   list-style-type: none;
   padding-left: 0px;
-  margin: 20px;
+  
+  @media (max-width: 768px) {
+   flex-direction:column
+   }
 `
 
 export const IconContainer = styled.div`

@@ -4,7 +4,7 @@ export const LoaderContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 88%;
+  width: 100%;
   min-height: 80vh;
 `
 export const VideoDetailsContainer = styled.div`
@@ -15,9 +15,9 @@ export const VideoDetailsContainer = styled.div`
 
 export const VideoContentContainer = styled.div`
   min-height: 100px;
-  width: 88%;
+  width: 100%;
   margin-top: 50px;
-  padding: 25px;
+  // padding: 25px;
 `
 export const PlayerAndVideoDetailsContainer = styled.div`
   min-height: 100vh;

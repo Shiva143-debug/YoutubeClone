@@ -8,17 +8,22 @@ export const HomeContainer = styled.div`
 export const HomeContentContainer = styled.div`
   min-height: 100px;
   margin-top: 50px;
-  width: 88%;
-  padding: 25px;
+  width: 100%;
+  // padding: 25px;
 `
 export const InputBox = styled.input`
   border-radius: 5px;
   height: 40px;
   padding: 10px;
-  margin-top: 10px;
+  
   border: 1px solid #94a3b8;
   width: 60%;
-  margin-top: 20px;
+   margin-top:50px;
+  
+   @media (max-width: 768px) {
+   margin-top:50px;
+   margin-left:10px
+   }
 `
 export const VideosContainer = styled.ul`
   display: flex;
@@ -27,6 +32,9 @@ export const VideosContainer = styled.ul`
   margin-top: 15px;
   list-style-type: none;
   padding-left: 0px;
+ @media (max-width: 768px) {
+   flex-direction:column
+   }
 `
 export const LoaderContainer = styled.div`
   display: flex;
@@ -53,6 +61,9 @@ export const BannerContainer = styled.div`
   width: 93%;
   flex-direction: column;
   padding: 15px;
+  @media (max-width: 768px) {
+   display:none
+   }
 `
 export const BannerLogo = styled.img`
   width: 15%;

@@ -1,10 +1,10 @@
 import {Component} from 'react'
 import {SiYoutubegaming} from 'react-icons/si'
-import Loader from 'react-loader-spinner'
+import {Oval} from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import ThemeContext from '../../context/ThemeContext'
 import Header from '../Header'
-// import SideBar from '../SideBar'
+import SideBar from '../SideBar'
 import GamingVideoItem from '../GamingVideoItem'
 import FailureView from '../FailureView'
 
@@ -17,7 +17,6 @@ import {
   VideosContainer,
   Heading,
 } from './styledComponents'
-import SideBar from '../SideBarr'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -30,6 +29,7 @@ class Gaming extends Component {
   state = {
     gamingVideosList: [],
     apiStatus: apiStatusConstants.initial,
+    isMobile: window.innerWidth <= 768,
   }
 
   componentDidMount() {
@@ -70,8 +70,7 @@ class Gaming extends Component {
 
   renderLoader = () => (
     <LoaderContainer data-testid="loader">
-      {/* <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" /> */}
-      <p>Loading</p>
+      <Oval type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </LoaderContainer>
   )
 
@@ -122,7 +121,7 @@ class Gaming extends Component {
             <>
               <Header />
               <GamingContainer darkMode={isDarkTheme} data-testid="gaming">
-                <SideBar />
+              {!this.state.isMobile && <SideBar />}
                 <GamingContentContainer>
                   <LinkItem darkMode={isDarkTheme}>
                     <IconContainer darkMode={isDarkTheme}>
