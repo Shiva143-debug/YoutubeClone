@@ -1,6 +1,7 @@
 .video-link-item {
   margin: 10px;
   width: 30%;
-  height: 450px;
+  min-height:400px;
+  height: 100%;
   text-decoration: none;
 }

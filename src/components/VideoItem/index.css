@@ -1,8 +1,7 @@
 .video-link-item {
-  margin: 10px;
-  width: 30%;
-  height: 450px;
-  text-decoration: none;
+  border-radius:8px;
+
+  padding:1%;
 }
 
 .selected {

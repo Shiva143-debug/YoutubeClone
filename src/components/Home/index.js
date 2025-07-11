@@ -8,6 +8,8 @@ import {
   HomeContainer,
   HomeContentContainer,
   InputBox,
+  SearchInputContainer,
+  SearchIconButton,
   VideosContainer,
   LoaderContainer,
   Button,
@@ -84,9 +86,12 @@ class Home extends Component {
     }
   }
 
-  onChangeSearchInput = event => {
-    this.setState({searchInputValue: event.target.value})
-  }
+onChangeSearchInput = event => {
+  this.setState(
+    { searchInputValue: event.target.value },
+    this.getVideos // Trigger search after setting state
+  )
+}
 
   renderLoader = () => (
     <LoaderContainer data-testid="loader">
@@ -101,16 +106,18 @@ class Home extends Component {
   closeBannerClicked = () => {
     this.setState({bannerVisible: false})
   }
+  
+startHomePage = () => {
+  this.setState({ searchInputValue: '' }, this.getVideos)
+}
+
 
   renderNoSearchResults = () => (
     <NoSearchResultsContainer>
-      <FailureImage
-        alt="no videos"
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
-      />
+      <FailureImage alt="no videos" src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"/>
       <NoResultsMsg>No Search results found</NoResultsMsg>
-      <Suggestion>Try different key words or remove search filter</Suggestion>
-      <RetryButtonInFailure>Retry</RetryButtonInFailure>
+      <Suggestion>Try different keywords or remove search filter</Suggestion>
+      <RetryButtonInFailure onClick={this.startHomePage}>Retry</RetryButtonInFailure>
     </NoSearchResultsContainer>
   )
 
@@ -158,47 +165,33 @@ class Home extends Component {
       <ThemeContext.Consumer>
         {value => {
           const {isDarkTheme} = value
-          const bannerClass = bannerVisible ? '' : 'hide'
+          const bannerClass = bannerVisible ? 'visible' : 'hide'
 
           return (
-            <>
+            <div darkMode={isDarkTheme} style={{width:"100vw"}}>
               <Header />
               <HomeContainer darkMode={isDarkTheme} data-testid="home">
+                <div>
               {!this.state.isMobile && <SideBar />}
+              </div>
                 <HomeContentContainer>
                   <BannerContainer className={bannerClass} data-testid="banner">
-                    <CloseButton
-                      data-testid="close"
-                      onClick={this.closeBannerClicked}
-                    >
+                    <CloseButton data-testid="close" onClick={this.closeBannerClicked}>
                       <GrClose />
                     </CloseButton>
-                    <BannerLogo
-                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                      alt="nxt watch logo"
-                    />
+                    <BannerLogo src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png" alt="nxt watch logo"/>
                     <BannerHeading>Buy Nxt Watch Premium</BannerHeading>
                     <BannerButton>GET IT NOW</BannerButton>
                   </BannerContainer>
 
-                  <InputBox
-                    id="search"
-                    type="search"
-                    value={searchInputValue}
-                    placeholder="Search"
-                    onChange={this.onChangeSearchInput}
-                  />
-                  <Button
-                    type="button"
-                    data-testid="searchButton"
-                    onClick={this.onSearchButtonClicked}
-                  >
-                    <BiSearchAlt2 />
-                  </Button>
+                  <SearchInputContainer>
+                    <InputBox id="search" type="search" value={searchInputValue} placeholder="Search" onChange={this.onChangeSearchInput} darkMode={isDarkTheme}/>
+                  </SearchInputContainer>
+
                   {renderBasedOnApiStatus}
                 </HomeContentContainer>
               </HomeContainer>
-            </>
+            </div>
           )
         }}
       </ThemeContext.Consumer>

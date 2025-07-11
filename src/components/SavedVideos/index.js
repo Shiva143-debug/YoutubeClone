@@ -33,13 +33,13 @@ const useIsMobile = () => {
 };
 
 const SavedVideos = () => {
-
   const isMobile = useIsMobile();
 
 return(
   <ThemeContext.Consumer>
-    {value => {
-      const {isDarkTheme, savedVideosList} = value
+    {value => { 
+      const {isDarkTheme, savedVideos} = value
+      console.log("savedVideos",savedVideos)
       const renderSavedVideos = () => (
         <>
           <LinkItem darkMode={isDarkTheme}>
@@ -49,10 +49,10 @@ return(
             <Heading darkMode={isDarkTheme}>Saved Videos</Heading>
           </LinkItem>
           <VideosContainer>
-            {savedVideosList.map(eachMovieDetails => (
+            {savedVideos.map(eachMovieDetails => (
               <VideoItem
-                key={eachMovieDetails.videoDetails.id}
-                eachMovieDetails={eachMovieDetails.videoDetails}
+                key={eachMovieDetails.id}
+                eachMovieDetails={eachMovieDetails}
               />
             ))}
           </VideosContainer>
@@ -68,7 +68,7 @@ return(
           >
            {!isMobile ? (<SideBar />):""}
             <SavedVideosContentContainer>
-              {savedVideosList.length === 0 ? (
+              {savedVideos.length === 0 ? (
                 <NoSavedVideosContainer>
                   <NoSavedVideos
                     alt="no saved videos"

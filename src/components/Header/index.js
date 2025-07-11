@@ -6,6 +6,8 @@ import { HiOutlineFire, HiFire } from 'react-icons/hi'
 import { SiYoutubegaming } from 'react-icons/si'
 import { BiListPlus } from 'react-icons/bi'
 import PopupDesign from '../PopupDesign'
+import { CiLight } from "react-icons/ci";
+import { IoMoonSharp } from "react-icons/io5";
 import "./index.css"
 import {
   NavDesktopContainer,
@@ -17,17 +19,22 @@ import {
   Profile,
   OptionItem,
   HamburgerMenuButton,
-  MobileOptionsContainer
+  MobileOptionsContainer,
 } from './styledComponents'
 
 const Header = () => {
 
   const [isMenuVisible, setIsMenuVisible] = useState(false)
+  const [logoutpopupDailog,setOpenLogoutPopup] = useState(false)
 
   const toggleMenuVisibility = () => {
     setIsMenuVisible(!isMenuVisible)
   }
 
+
+  const logoutpopup=()=>{
+    setOpenLogoutPopup(true)
+  }
   return (
   <ThemeContext.Consumer>
     {value => {
@@ -40,36 +47,28 @@ const Header = () => {
         ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
         : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
 
-      const themeImageURL = isDarkTheme
-        ? 'https://assets.ccbp.in/frontend/react-js/light-theme-img.png'
-        : 'https://assets.ccbp.in/frontend/react-js/dark-theme-img.png'
 
       return (
         <NavDesktopContainer darkMode={isDarkTheme}>
           <NavBarDesktopContent>
-            <Link to="/home">
+            <Link to="/">
               <WebsiteLogo src={websiteLogo} alt="website logo" />
             </Link>
 
             <OptionsContainer>
-              <ThemeButton
-                type="button"
-                data-testid="theme"
-                onClick={onToggleTheme}
-              >
-                <ThemeLogo src={themeImageURL} />
+              <ThemeButton type="button" data-testid="theme" onClick={onToggleTheme}>
+                {isDarkTheme ? <CiLight size={40} color="white"/>: <IoMoonSharp size={40}/>}
               </ThemeButton>
-              <Profile
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
-                alt="profile"
-              />
+             
               <HamburgerMenuButton onClick={toggleMenuVisibility} darkMode={isDarkTheme}>
-                <AiOutlineMenu className="icon-i" size={20} />
+                <AiOutlineMenu className="icon-i" size={40} />
               </HamburgerMenuButton>
+
+               <PopupDesign />
 
               {isMenuVisible && (
                 <MobileOptionsContainer>
-                  <Link to="/home" className="link-item">
+                  <Link to="/" className="link-item">
                     <OptionItem>
                       {isDarkTheme ? (
                         <AiFillHome className="icon" />
@@ -108,7 +107,7 @@ const Header = () => {
               )}
               
               <br />
-              <PopupDesign />
+                
             </OptionsContainer>
           </NavBarDesktopContent>
         </NavDesktopContainer>

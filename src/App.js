@@ -76,12 +76,31 @@ import Trending from './components/Trending';
 import SavedVideos from './components/SavedVideos';
 import VideoItemDetails from './components/VideoItemDetails';
 import NotFound from './components/NotFound';
+import {useEffect,useState} from "react"
 
 const App = () => {
   const isAuthenticated = useAuthentication();
   const [isDarkTheme, setIsDarkTheme] = React.useState(false);
   const [savedVideosList, setSavedVideosList] = React.useState([]);
+  const [savedVideos, setSavedVideos] = useState(() => {
+    const saved = localStorage.getItem('savedVideos')
+    return saved ? JSON.parse(saved) : []
+  })
 
+
+    useEffect(() => {
+    localStorage.setItem('savedVideos', JSON.stringify(savedVideos))
+  }, [savedVideos])
+
+
+  const toggleSaveVideo = video => {
+    const isAlreadySaved = savedVideos.find(item => item.id === video.id)
+    if (isAlreadySaved) {
+      setSavedVideos(prev => prev.filter(item => item.id !== video.id))
+    } else {
+      setSavedVideos(prev => [...prev, video])
+    }
+  }
   const toggleTheme = () => {
     setIsDarkTheme(prevTheme => !prevTheme);
   };
@@ -95,7 +114,9 @@ const App = () => {
       value={{
         isDarkTheme,
         toggleTheme,
+        toggleSaveVideo,
         saveVideoButtonClicked,
+        savedVideos,
         savedVideosList,
       }}
     >
@@ -106,7 +127,7 @@ const App = () => {
 
         {isAuthenticated ? (
           <>
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/trending" element={<Trending />} />
             <Route path="/saved-videos" element={<SavedVideos />} />
             <Route path="/gaming" element={<Gaming />} />

@@ -1,15 +1,21 @@
 import styled from 'styled-components'
 
 export const TrendingContainer = styled.div`
-  min-height: 100vh;
   background-color: ${props => (props.darkMode ? '#0f0f0f' : '#f9f9f9')};
   color: ${props => (!props.darkMode ? '#0f0f0f' : '#f9f9f9')};
   display: flex;
 `
 export const TrendingContentContainer = styled.div`
   min-height: 100px;
+  margin-top: 50px;
   width: 100%;
-  // padding: 25px;
+  margin-left:20%
+    @media (max-width: 768px) {
+  margin-left:0px
+  }
+      @media (min-width: 769px) {
+     margin-left:20%
+  }
   
 `
 
@@ -35,8 +41,10 @@ export const IconContainer = styled.div`
 export const LinkItem = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
-  margin-top: 100px;
+  margin-bottom: 2%;
+  margin-top: 4%;
+  margin-left:2%;
+  margin-right:2%;
   font-size: 25px;
   background-color: ${props => (props.darkMode ? '#181818' : '#ffffff')};
   color: ${props => (!props.darkMode ? 'black' : '#ffffff')};

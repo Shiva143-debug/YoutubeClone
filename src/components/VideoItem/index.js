@@ -2,15 +2,14 @@ import {Link} from 'react-router-dom'
 import './index.css'
 
 import {
-  ListItem,
-  VideoImage,
-  DetailsContainer,
-  ProfileContainer,
-  Profile,
-  AboutContainer,
-  Title,
-  ChannelNameViewCountAndPublishedStyling,
-  DynamicDataContainer,
+  VideoCardContainer,
+  VideoThumbnail,
+  VideoContent,
+  VideoTopRow,
+  ChannelLogo,
+  VideoTitle,
+  VideoMetaRow,
+  VideoMetaText,
 } from './styledComponents'
 
 import ThemeContext from '../../context/ThemeContext'
@@ -22,39 +21,38 @@ const VideoItem = props => {
     <ThemeContext.Consumer>
       {value => {
         const {isDarkTheme} = value
+
         return (
-          <Link
-            to={`/videos/${eachMovieDetails.id}`}
-            className="video-link-item"
-          >
-            <ListItem>
-              <VideoImage
-                src={eachMovieDetails.thumbnailUrl}
-                alt="video thumbnail"
-              />
-              <DetailsContainer>
-                <ProfileContainer>
-                  <Profile
-                    src={eachMovieDetails.profileImageUrl}
-                    alt="channel logo"
-                  />
-                </ProfileContainer>
-                <AboutContainer>
-                  <Title darkMode={isDarkTheme}>{eachMovieDetails.title}</Title>
-                  <ChannelNameViewCountAndPublishedStyling>
-                    {eachMovieDetails.channelName}
-                  </ChannelNameViewCountAndPublishedStyling>
-                  <DynamicDataContainer>
-                    <ChannelNameViewCountAndPublishedStyling>
-                      {`${eachMovieDetails.viewCount} Views`}
-                    </ChannelNameViewCountAndPublishedStyling>
-                    <ChannelNameViewCountAndPublishedStyling>
+          <Link to={`/videos/${eachMovieDetails.id}`} className="video-link-item">
+              <VideoCardContainer>
+                <VideoThumbnail
+                  src={eachMovieDetails.thumbnailUrl}
+                  alt="video thumbnail"
+                />
+                <VideoContent>
+                  <VideoTopRow>
+                    <ChannelLogo
+                      src={eachMovieDetails.profileImageUrl}
+                      alt="channel logo"
+                    />
+                    <VideoTitle darkMode={isDarkTheme}>
+                      {eachMovieDetails.title}
+                    </VideoTitle>
+                  </VideoTopRow>
+                  <VideoMetaRow>
+                    <VideoMetaText darkMode={isDarkTheme}>
+                      {eachMovieDetails.channelName}
+                    </VideoMetaText>
+                    <VideoMetaText darkMode={isDarkTheme}>
+                      {eachMovieDetails.viewCount} Views
+                    </VideoMetaText>
+                    <VideoMetaText darkMode={isDarkTheme}>
                       {eachMovieDetails.publishedAt}
-                    </ChannelNameViewCountAndPublishedStyling>
-                  </DynamicDataContainer>
-                </AboutContainer>
-              </DetailsContainer>
-            </ListItem>
+                    </VideoMetaText>
+                  </VideoMetaRow>
+                </VideoContent>
+              </VideoCardContainer>
+          
           </Link>
         )
       }}

@@ -9,27 +9,54 @@ export const HomeContentContainer = styled.div`
   min-height: 100px;
   margin-top: 50px;
   width: 100%;
-  // padding: 25px;
+  margin-left:20%
+  @media (max-width: 768px) {
+    margin-left:0px
+  }
+     @media (min-width: 769px) {
+     margin-left:20%
+  }
+
 `
+export const SearchInputContainer = styled.div`
+  // position: relative;
+  width: 60%;
+  margin-top: 5%;
+
+  @media (max-width: 768px) {
+    margin-left: 10px;
+    margin-top: 10%;
+    width: 80%;
+  }
+`
+
+// Styled input
 export const InputBox = styled.input`
   border-radius: 5px;
   height: 40px;
-  padding: 10px;
-  
+  padding: 10px 40px 10px 10px; 
+  background-color: transparent;
+  color:${props => (props.darkMode ? 'white' : 'black')};
   border: 1px solid #94a3b8;
-  width: 60%;
-   margin-top:50px;
-  
-   @media (max-width: 768px) {
-   margin-top:50px;
-   margin-left:10px
-   }
+  width: 100%;
+  margin-left:3%
 `
+
+// Styled icon button inside input
+export const SearchIconButton = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+`
+
 export const VideosContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  min-height: 80vh;
-  margin-top: 15px;
   list-style-type: none;
   padding-left: 0px;
  @media (max-width: 768px) {
@@ -55,10 +82,10 @@ export const Button = styled.button`
 export const BannerContainer = styled.div`
   background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
   background-size: cover;
-  height: 250px;
-  margin-top: 20px;
   display: flex;
-  width: 93%;
+  width: 75vw;
+  margin:2%;
+   margin-top: 50px;
   flex-direction: column;
   padding: 15px;
   @media (max-width: 768px) {
@@ -104,11 +131,11 @@ export const NoSearchResultsContainer = styled.div`
 `
 
 export const NoResultsMsg = styled.h1`
-  color: ${props => (!props.darkMode ? '#0f0f0f' : '#f9f9f9')};
+  color: gray
 `
 
 export const Suggestion = styled.p`
-  color: ${props => (!props.darkMode ? '#0f0f0f' : '#f9f9f9')};
+  color: gray
 `
 export const RetryButtonInFailure = styled.button`
   background-color: #4f46e5;

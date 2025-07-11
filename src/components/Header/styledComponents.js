@@ -7,9 +7,14 @@ export const NavDesktopContainer = styled.nav`
   min-height: 60px;
   padding: 15px;
   background-color: ${props => (props.darkMode ? '#181818' : '#ffffff')};
+  box-shadow: ${props =>
+    props.darkMode
+      ? '0px 2px 4px 4px rgba(228, 227, 227, 0.1)'
+      : '4px 4px 8px  4px rgba(31, 28, 28, 0.1)'};
   color: ${props => (!props.darkMode ? '#181818' : '#ffffff')};
   position: fixed;
   width: 100%;
+
 
 `
 export const NavBarDesktopContent = styled.div`
@@ -27,9 +32,6 @@ export const WebsiteLogo = styled.img`
 `
 export const OptionsContainer = styled.div`
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 30%;
   height: 50px;
       @media (max-width: 768px) {
    width: 60%;
@@ -90,4 +92,11 @@ export const OptionItem = styled.div`
   .icon {
     margin-right: 10px;
   }
+      &:hover {
+    background-color: ${({ darkMode }) =>
+      darkMode ? 'black' : 'white'};
+    color: white;
+  }
+    
 `
+

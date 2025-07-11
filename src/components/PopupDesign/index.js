@@ -2,6 +2,7 @@ import Popup from 'reactjs-popup'
 import Cookies from 'js-cookie'
 import {useNavigate} from 'react-router-dom'
 import ThemeContext from '../../context/ThemeContext'
+import { LuLogOut } from "react-icons/lu";
 
 import {
   PopupContainer,
@@ -10,6 +11,9 @@ import {
   PopupButton,
   ButtonsContainer,
   WarningMessage,
+  LogoutTriggerWrapper,
+  IconButton
+  
 } from './styledComponents'
 
 import 'reactjs-popup/dist/index.css'
@@ -33,13 +37,19 @@ const PopupDesign = props => {
         const {isDarkTheme} = value
         return (
           <PopupContainer>
-            <Popup
+            <Popup 
               modal
               trigger={
-                <LogoutButton type="button" darkMode={isDarkTheme}>
-                  Logout
-                </LogoutButton>
+              <LogoutTriggerWrapper>
+                  <LogoutButton type="button" darkMode={isDarkTheme}>
+                    Logout
+                  </LogoutButton>
+                  <IconButton>
+                    <LuLogOut size={40} />
+                  </IconButton>
+                </LogoutTriggerWrapper>
               }
+               
             >
               {close => (
                 <ModalContainer darkMode={isDarkTheme}>

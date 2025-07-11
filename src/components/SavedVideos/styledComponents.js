@@ -9,9 +9,15 @@ export const SavedVideosContainer = styled.div`
 
 export const SavedVideosContentContainer = styled.div`
   min-height: 100px;
-  width: 100%;
-  // padding: 25px;
   margin-top: 50px;
+  width: 100%;
+  margin-left:20%
+    @media (max-width: 768px) {
+  margin-left:0px
+  }
+       @media (min-width: 769px) {
+     margin-left:20%
+  }
 `
 
 export const VideosContainer = styled.ul`
@@ -60,8 +66,10 @@ export const IconContainer = styled.div`
 export const LinkItem = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 2%;
+  margin-top: 4%;
+  margin-left:2%;
+  margin-right:2%;
   font-size: 25px;
   background-color: ${props => (props.darkMode ? '#181818' : '#ffffff')};
   color: ${props => (!props.darkMode ? 'black' : '#ffffff')};

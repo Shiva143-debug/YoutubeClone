@@ -5,6 +5,7 @@ const ThemeContext = React.createContext({
   toggleTheme: () => {},
   savedVideosList: [],
   saveVideoButtonClicked: () => {},
+  toggleSaveVideo :()=>{}
 })
 
 export default ThemeContext
