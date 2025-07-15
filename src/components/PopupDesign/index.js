@@ -51,7 +51,7 @@ const PopupDesign = props => {
                     Logout
                   </LogoutButton>
                   <IconButton>
-                    <LuLogOut size={40} />
+                    <LuLogOut size={26} />
                   </IconButton>
                 </LogoutTriggerWrapper>
               }
