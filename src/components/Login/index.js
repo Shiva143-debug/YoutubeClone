@@ -2,7 +2,10 @@
 import React, { useState, useContext } from 'react'
 import Cookies from 'js-cookie'
 import { useNavigate, Navigate } from 'react-router-dom'
+import AuthContext from '../../context/AuthContext'
 import ThemeContext from '../../context/ThemeContext'
+// const { login } = useContext(AuthContext)
+
 import {
   LoginContainer,
   LoginFormContainer,
@@ -24,6 +27,7 @@ const Login = () => {
   const [errorMsg, setErrorMsg] = useState('')
 
   const { isDarkTheme } = useContext(ThemeContext)
+  const { login } = useContext(AuthContext)
   const navigate = useNavigate()
 
   const onChangeUsername = event => {
@@ -43,13 +47,18 @@ const Login = () => {
     }
   }
 
+  // const onSubmitSuccess = jwtToken => {
+  //   Cookies.set('jwt_token', jwtToken, {
+  //     expires: 30,
+  //     path: '/',
+  //   })
+  //   navigate('/', { replace: true })
+  // }
+
   const onSubmitSuccess = jwtToken => {
-    Cookies.set('jwt_token', jwtToken, {
-      expires: 30,
-      path: '/',
-    })
-    navigate('/', { replace: true })
-  }
+  login(jwtToken)  // ← set context authenticated
+  navigate('/', { replace: true })
+}
 
   const onSubmitFailure = errorMsg => {
     setShowErrorMsg(true)

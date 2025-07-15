@@ -13,11 +13,15 @@ export const NotFoundContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left:10%
 `
 export const NotFoundImage = styled.img`
-  width: 50%;
+  width: 40%;
 `
 
-export const NotFoundText = styled.h1``
+export const NotFoundText = styled.h1`
+ color: ${props => (props.darkMode ? 'white' : 'black')};
+`
 
-export const SorryMsg = styled.p``
+export const SorryMsg = styled.p`
+ color: ${props => (props.darkMode ? 'white' : 'black')};`

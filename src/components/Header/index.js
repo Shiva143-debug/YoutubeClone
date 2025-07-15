@@ -57,11 +57,11 @@ const Header = () => {
 
             <OptionsContainer>
               <ThemeButton type="button" data-testid="theme" onClick={onToggleTheme}>
-                {isDarkTheme ? <CiLight size={40} color="white"/>: <IoMoonSharp size={40}/>}
+                {isDarkTheme ? <CiLight size={26} color="white"/>: <IoMoonSharp size={26}/>}
               </ThemeButton>
              
               <HamburgerMenuButton onClick={toggleMenuVisibility} darkMode={isDarkTheme}>
-                <AiOutlineMenu className="icon-i" size={40} />
+                <AiOutlineMenu className="icon-i" size={26} />
               </HamburgerMenuButton>
 
                <PopupDesign />

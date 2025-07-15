@@ -20,13 +20,13 @@ const NotFound = () => (
 
       return (
         <>
-          <Header />
+          {/* <Header /> */}
           <NotFoundContainer darkMode={isDarkTheme} data-testid="not-found">
-            <SideBar />
+            {/* <SideBar /> */}
             <NotFoundContentContainer>
               <NotFoundImage src={notFoundImage} alt="not found" />
-              <NotFoundText>Page Not Found</NotFoundText>
-              <SorryMsg>
+              <NotFoundText darkMode={isDarkTheme}>Page Not Found</NotFoundText>
+              <SorryMsg darkMode={isDarkTheme}>
                 we are sorry, the page you requested could not be found.
               </SorryMsg>
             </NotFoundContentContainer>

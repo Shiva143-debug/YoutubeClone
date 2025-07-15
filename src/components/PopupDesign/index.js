@@ -1,7 +1,10 @@
+import React, {  useContext } from 'react'
 import Popup from 'reactjs-popup'
 import Cookies from 'js-cookie'
 import {useNavigate} from 'react-router-dom'
+
 import ThemeContext from '../../context/ThemeContext'
+import AuthContext from '../../context/AuthContext'
 import { LuLogOut } from "react-icons/lu";
 
 import {
@@ -19,6 +22,7 @@ import {
 import 'reactjs-popup/dist/index.css'
 
 const PopupDesign = props => {
+  const { logout } = useContext(AuthContext)
   // const onLogoutClicked = () => {
   //   const {history} = props
   //   Cookies.remove('jwt_token')
@@ -27,8 +31,10 @@ const PopupDesign = props => {
   // }
   const navigate = useNavigate();
   const onLogoutClicked = () => {
-    Cookies.remove('jwt_token');
-    navigate('/login', { replace: true });
+    // Cookies.remove('jwt_token');
+    // navigate('/login', { replace: true });
+     logout()
+     navigate('/login', { replace: true })
   };
 
   return (
